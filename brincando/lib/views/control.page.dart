@@ -40,7 +40,9 @@ class ControlPage extends StatelessWidget {
         children: [
           IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: (){
+              Navigator.pushReplacementNamed(context, '/home');
+              },
           ),
           Expanded(
             child: Center(

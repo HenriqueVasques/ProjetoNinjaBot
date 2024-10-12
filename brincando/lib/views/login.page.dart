@@ -83,7 +83,7 @@ class LoginPage extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 16),
                     ),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/');
+                      Navigator.pushReplacementNamed(context, '/home');
                     },
                   ),
                   SizedBox(height: 16),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +42,7 @@ class HomePage extends StatelessWidget {
           );
         },
       ),
+      bottomNavigationBar: _buildBottomNavigationBar(context),
     );
   }
 
@@ -185,6 +188,82 @@ class HomePage extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: child,
+    );
+  }
+
+  Widget _buildBottomNavigationBar(BuildContext context) {
+    return Stack(
+      clipBehavior: Clip.none,
+      alignment: Alignment.topCenter,
+      children: [
+        _buildNavigationBar(context),
+        Positioned(
+          top: -30,
+          child: _buildWifiButton(),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildNavigationBar(BuildContext context) {
+    return Container(
+      height: 60,
+      decoration: BoxDecoration(
+        color: Colors.grey[900],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+         children: [
+        // Ícone de configurações à esquerda
+        Padding(
+          padding: const EdgeInsets.only(left: 40),
+          child: _buildNavIcon(
+            Icons.settings,
+            Colors.white54,
+            () {
+              print('Configurações pressionado');
+            },
+          ),
+        ),
+        // Espaço central ocupado pelo botão de Wi-Fi
+        SizedBox(width: 60), // Espaço para o botão Wi-Fi acima
+        // Ícone de perfil à direita
+        Padding(
+          padding: const EdgeInsets.only(right: 40),
+          child: _buildNavIcon(
+            Icons.person,
+            Colors.white54,
+            () {
+              print('Perfil pressionado');
+            },
+          ),
+        ),
+      ],
+      ),
+    );
+  }
+
+  Widget _buildNavIcon(IconData icon, Color color, VoidCallback onPressed) {
+    return IconButton(
+      icon: Icon(icon, color: color),
+      onPressed: onPressed,
+    );
+  }
+
+  Widget _buildWifiButton() {
+    return Container(
+      height: 60,
+      width: 60,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.blue,
+      ),
+      child: IconButton(
+        icon: Icon(Icons.wifi, color: Colors.white, size: 30),
+        onPressed: () {
+          print('Parear pressionado');
+        },
+      ),
     );
   }
 }
